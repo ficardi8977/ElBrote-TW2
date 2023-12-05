@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:admin@tallerweb2.tom4g9j.mongodb.net/TP_TALLERWEB_2', {
+mongoose.connect('-', {
 });
 
 const db = mongoose.connection;
