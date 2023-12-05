@@ -1,0 +1,14 @@
+<div class="form-container">
+    <h1 style="text-align: center;color:white;">Ingresar</h1>
+    <div [formGroup]="formLogIn">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" formControlName="email" required EmailValidator />
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="email" formControlName="password" required />
+    </div>
+    <div class="botones">
+      <button (click)='ingresarUsuario();' style="background-color: green;">Ingresar</button>
+      <a routerLink='/registrar' routerLinkActive='active' class="btn">Registrarse</a> 
+      <a class="nav-link" routerLink="/recuperar">Recuperar cuenta</a>
+    </div>
+  </div>

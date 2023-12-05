@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="title-container">
+    <div class="line"></div>
+    <span>DESTACADOS</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="description">
+    <p class="body_description">
+      Seleccioná de nuestra tienda online las mejores frutas y verduras premium,
+      100% naturales.<br />
+      Armá tu pedido para toda la semana y recibilo en tu domicilio!.<br />
+      Además para tus pedidos superiores a $9000 el envío es GRATIS!
+    </p>
+  </div>
+  <div class="row">
+    <div *ngFor="let product of products" class="col mx-1">
+      <div class="card">
+        <img
+          src="{{ product.imageUrl }}"
+          class="card-img-top card-img custom-img"
+          alt="{{ product.descripcion }}"
+        />
+        <div class="card-body">
+          <p>Precio: ${{ product.precio }}</p>
+          <p>
+            <strong>Total:</strong> ${{ product.totalForSelectedQuantity || 0 }}
+          </p>
+          <app-cart-button [producto]="product" [isVistaDetalle]="false"></app-cart-button>
+          <a
+            [routerLink]="['/producto-detalle', product._id]"
+            class="btn ver-detalle mt-2"
+            >Ver detalle</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

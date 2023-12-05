@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1>Gestión de Catálogo</h1>
+      <div class="description" *ngIf="productos.length != 0">
+        <p class="body_description">
+          Bienvenido al panel de administración de productos frescos de nuestra
+          verdulería! Aquí, como administrador, tienes el poder de agregar
+          nuevos productos a nuestro catálogo y mantenerlo siempre actualizado
+          con las deliciosas opciones que ofrecemos.
+        </p>
+        <button
+          type="button"
+          class="btn btn-primary"
+          routerLink="/crear-producto"
+        >
+          Crear Producto
+        </button>
+      </div>
+
+      <ng-container *ngIf="productos.length != 0; else productosNull">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Clasificacion</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos">
+              <th scope="row">
+                <img
+                  src="{{ producto.imageUrl }}"
+                  width="50px"
+                  alt="imagen producto"
+                />
+              </th>
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.clasificacion }}</td>
+              <td>${{ producto.precio }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-warning me-2"
+                  (click)="editar(producto)"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2"
+                  (click)="eliminar(producto._id)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+
+      <ng-template #productosNull>
+        <div>
+          <p class="mb-0">
+            Actualmente, no contamos con productos disponibles en nuestra
+            verdulería. Si deseas agregar un nuevo producto, simplemente haz
+            clic en 'Crear Producto'. ¡Gracias por tu colaboración!
+          </p>
+          <button
+            class="mt-1"
+            type="button"
+            class="btn btn-primary"
+            routerLink="/crear-producto"
+          >
+            Crear Producto
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

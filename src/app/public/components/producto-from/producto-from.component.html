@@ -1,0 +1,167 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="m-0">{{ titulo }}</h1>
+      <ng-container *ngIf="titulo === 'Crear Producto'; else productoEditar">
+        <p class="mb-0">
+          Gracias por contribuir a la frescura de nuestro catálogo! A
+          continuación, te guiamos a través de la creación de un nuevo producto.
+          Por favor, llena todos los campos con la información requerida para
+          que nuestros clientes tengan una experiencia de compra excepcional.
+        </p>
+      </ng-container>
+
+      <ng-template #productoEditar>
+        <p class="mb-0">
+          Gracias por mantener actualizado nuestro catálogo de productos! A
+          continuación, te guiaremos a través del proceso de edición de un
+          producto existente. Por favor, utiliza esta herramienta para
+          asegurarte de que los detalles de nuestros productos sigan siendo
+          precisos y atractivos para nuestros clientes.
+        </p>
+      </ng-template>
+    </div>
+    <div class="col-12">
+      <form
+        class="mt-4"
+        [formGroup]="productoForm"
+        (ngSubmit)="crearProducto()"
+      >
+        <div class="row">
+          <div class="col-12 col-md-6 mt-1">
+            <div class="mb-3">
+              <label for="nombreInput" class="form-label">
+                <span class="text-danger">*</span>Nombre
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreInput"
+                placeholder="ingrese nombre..."
+                formControlName="nombre"
+                [ngClass]="{
+                  'is-valid': !nombreField?.errors && nombreField?.touched,
+                  'is-invalid': nombreField?.errors && nombreField?.touched
+                }"
+              />
+              <div
+                class="invalid-feedback my-2"
+                [class.active]="nombreField?.touched && nombreField?.invalid"
+              >
+                <p *ngIf="nombreField?.hasError('required')">
+                  El campo es requerido
+                </p>
+                <p *ngIf="nombreField?.hasError('minlength')">
+                  Este campo no puede ser menor a 4 caracteres
+                </p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label"
+                ><span class="text-danger">*</span>Precio</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="precio"
+                formControlName="precio"
+                [ngClass]="{
+                  'is-valid': !precioField?.errors && precioField?.touched,
+                  'is-invalid': precioField?.errors && precioField?.touched
+                }"
+              />
+              <div
+                class="invalid-feedback my-2"
+                [class.active]="precioField?.touched && precioField?.invalid"
+              >
+                <p *ngIf="precioField?.hasError('required')">
+                  El campo es requerido
+                </p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="clasificacion" class="form-label"
+                >Clasificacion
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="5"
+                step="0.5"
+                class="form-range"
+                id="clasificacion"
+                formControlName="clasificacion"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mt-1">
+            <div class="mb-3">
+              <label for="descrisTextarea" class="form-label"
+                ><span class="text-danger">*</span>Descripcion</label
+              >
+              <textarea
+                class="form-control small-textarea"
+                id="descrisTextarea"
+                formControlName="descripcion"
+                rows="3"
+                [ngClass]="{
+                  'is-valid':
+                    !descripcionField?.errors && descripcionField?.touched,
+                  'is-invalid':
+                    descripcionField?.errors && descripcionField?.touched
+                }"
+              ></textarea>
+
+              <div
+                class="invalid-feedback my-2"
+                [class.active]="
+                  descripcionField?.touched && descripcionField?.invalid
+                "
+              >
+                <p *ngIf="descripcionField?.hasError('required')">
+                  El campo es requerido
+                </p>
+                <p *ngIf="descripcionField?.hasError('minlength')">
+                  Este campo no puede ser menor a 7 caracteres
+                </p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label"
+                ><span class="text-danger">*</span>Imagen</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                id="formFile"
+                (change)="onFileSelected($event)"
+                formControlName="imageUrl"
+                [ngClass]="{
+                  'is-valid': !imagenField?.errors && imagenField?.touched,
+                  'is-invalid': imagenField?.errors && imagenField?.touched
+                }"
+              />
+
+              <div
+                class="invalid-feedback my-2"
+                [class.active]="imagenField?.touched && imagenField?.invalid"
+              >
+                <p *ngIf="imagenField?.hasError('required')">
+                  El campo es requerido
+                </p>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success mt-1"
+              [disabled]="productoForm.invalid"
+            >
+              Guardar Producto
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

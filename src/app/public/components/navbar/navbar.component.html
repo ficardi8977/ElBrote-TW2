@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a routerLink=""><img src="assets/logo/logo.png"/></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span routerLink="" class="navbar-toggler-icon"></span>
+    </button>
+
+    
+
+    <div class="collapse navbar-collapse buttonsNav" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item liItem">
+          <a class="nav-link" href="#" routerLink="tienda">Tienda</a>
+        </li>
+        <li *ngIf="authenticationService.rol === 'ADMIN'" class="nav-item liItem">
+          <a class="nav-link" href="#" routerLink="admin">Administrador de productos</a>
+        </li>        
+      </ul>
+    </div>
+    <!-- Carrito de compras -->
+    <div class="cart-container ml-auto">
+     
+      <button class="btn btn-light cartButton">
+        <i class="fas fa-user"></i>
+        <a class="nav-link" *ngIf="!authenticationService.isLoggedIn" routerLink="ingresar">Ingresar</a>
+        <a class="nav-link" *ngIf="authenticationService.isLoggedIn" (click)="cerrarSesion();">Cerrar Sesión</a>
+      </button>
+    
+      <button class="btn btn-light cartButton" (click)="mostrarCarrito()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge badge-danger numberItems">{{ cantidadEnCarrito }}</span>
+        <a class="nav-link">Carrito de compras</a>
+      </button>
+    </div>
+  </nav>
+</div>

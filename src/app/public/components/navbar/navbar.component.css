@@ -1,0 +1,32 @@
+img{
+    width: 4em;
+}
+.container{
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.buttonsNav{
+    display: flex;
+    justify-content: center;
+}
+
+.liItem{
+    font-size: 1.5em;
+}
+.liItem:not(:last-child) {
+    margin-right: 1em; /* Ajusta el valor según prefieras */
+}
+
+.navbar-nav .liItem a:hover {
+    color: green; /* Color verde al pasar el cursor */
+}
+
+.navbar-nav .liItem.active a {
+    color: goldenrod; /* Color dorado para el enlace seleccionado */
+}
+
+.numberItems{
+    background-color: green;
+}
+  

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="my-2">Registrar usuario</h1>
+      <form (ngSubmit)="registrarUsuario()" [formGroup]="formRegistrar"> <!-- Cambiamos a formRegistrar -->
+        <div class="form-group my-2">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="usuario.email" formControlName="email" class="form-control">
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('email').hasError('required') && formRegistrar.get('email').touched">
+            El email es requerido.
+          </div>
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('email').hasError('email') && formRegistrar.get('email').touched">
+            El email no es válido.
+          </div>
+        </div>
+        <div class="form-group my-2">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" [(ngModel)]="usuario.password"  formControlName="password" class="form-control">
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('password').hasError('required') && formRegistrar.get('password').touched">
+            La contraseña es requerida.
+          </div>
+          <div class="text-danger my-2" *ngIf="(formRegistrar.get('password').hasError('pattern') || formRegistrar.get('password').hasError('minLength')) && formRegistrar.get('password').touched">
+            La contraseña debe tener al menos 8 caracteres, al menos una letra mayúscula, una minúscula, un número y un caracter especial.
+          </div>
+        </div>
+        <div class="form-group my-2">
+          <label for="name">Nombre:</label>
+          <input type="text" id="nombre" [(ngModel)]="usuario.nombre" formControlName="nombre" class="form-control">
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('nombre').hasError('required') && formRegistrar.get('nombre').touched">
+            El nombre es requerido.
+          </div>
+        </div>
+        <div class="form-group my-2">
+          <label for="apellido">Apellido:</label>
+          <input type text id="apellido" [(ngModel)]="usuario.apellido" formControlName="apellido" class="form-control">
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('apellido').hasError('required') && formRegistrar.get('apellido').touched">
+            El apellido es requerido.
+          </div>
+        </div>
+        <div class="form-group my-2">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" [(ngModel)]="usuario.direccion" formControlName="direccion" class="form-control">
+          <div class="text-danger my-2" *ngIf="formRegistrar.get('direccion').hasError('required') && formRegistrar.get('direccion').touched">
+            La dirección es requerida.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <a href="/" class="btn btn-danger btn-block">Cancelar</a>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" [disabled]="formRegistrar.invalid" class="btn btn-success btn-block">Registrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

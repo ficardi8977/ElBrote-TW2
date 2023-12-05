@@ -1,0 +1,25 @@
+<div *ngIf="producto" class="container d-flex justify-content-between"></div>
+
+<div class="title-container text-center mb-5 p-2">
+    <h2>{{ producto.nombre }}</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+      <div>
+        <p>{{ producto.descripcion }}</p>
+        <p>Precio: ${{ producto.precio }}</p>
+        <app-cart-button [producto]="producto" [isVistaDetalle]="false"></app-cart-button>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="image-container text-center">
+        <img src="{{ producto.imageUrl }}" class="card-img-top card-img custom-img w-50" alt="{{ producto.descripcion }}" />
+      </div>
+    </div>
+
+  </div>
+</div>
